@@ -1,5 +1,7 @@
 require 'httparty'
 require 'pry'
+require 'json'
+
 class Kele
   include HTTParty
   base_uri 'https://www.bloc.io/api/v1'
@@ -23,5 +25,8 @@ class Kele
     puts "Hello World"
   end
 
-
+  def get_me
+    response = self.class.get('https://www.bloc.io/api/v1/users/me', headers: { "authorization" => @token })
+    JSON.parse(response.body)
+  end
 end
