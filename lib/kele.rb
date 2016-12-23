@@ -1,8 +1,10 @@
 require 'httparty'
 require 'pry'
 require 'json'
+require './lib/road'
 
 class Kele
+  include Road
   include HTTParty
   base_uri 'https://www.bloc.io/api/v1'
 
