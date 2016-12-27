@@ -37,4 +37,25 @@ class Kele
     puts response
     JSON.parse(response.body)
   end
+
+  def get_messages(page = nil)
+    query = (page ? "?page=#{page}" : "")
+
+    response = self.class.get("https://www.bloc.io/api/v1/message_threads" + query, headers: { "authorization" => @token })
+
+    JSON.parse(response.body)
+  end
+
+  def create_message(sender, recipient_id, token, subject, stripped_text)
+    values = {
+      sender: sender,
+      recipient_id: recipient_id,
+      token: token,
+      subject: subject,
+      stripped_text: stripped_text
+    }
+
+    response = self.class.post('https://www.bloc.io/api/v1/messages', values)
+    puts response
+  end
 end
