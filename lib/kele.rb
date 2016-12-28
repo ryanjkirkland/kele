@@ -50,12 +50,17 @@ class Kele
     values = {
       sender: sender,
       recipient_id: recipient_id,
-      token: token,
+      # token: token,
       subject: subject,
-      stripped_text: stripped_text
+      "stripped-text": stripped_text
     }
 
-    response = self.class.post('https://www.bloc.io/api/v1/messages', values)
+    headers = {
+      # "content_type" => 'application/json',
+      "authorization" => @token
+    }
+
+    response = self.class.post('https://www.bloc.io/api/v1/messages', body: values, headers: headers)
     puts response
   end
 end
