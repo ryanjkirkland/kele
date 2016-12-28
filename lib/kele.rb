@@ -44,8 +44,13 @@ class Kele
       "assignment_commit_link" => commit,
       "checkpoint_id" => checkpoint_id,
       "comment" => comment,
-      "enrollment_id": enrollment_id
+      "enrollment_id" => enrollment_id
     }
-    response = self.class.post('https://www.bloc.io/api/v1/checkpoint_submissions', headers: { "authorization" => @token })
+
+    headers = {
+      "authorization" => @token
+    }
+    response = self.class.post('https://www.bloc.io/api/v1/checkpoint_submissions', body: values, headers: headers)
+    puts response
   end
 end
