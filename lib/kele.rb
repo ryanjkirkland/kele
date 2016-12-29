@@ -38,6 +38,7 @@ class Kele
     JSON.parse(response.body)
   end
 
+<<<<<<< HEAD
   def get_messages(page = nil)
     query = (page ? "?page=#{page}" : "")
 
@@ -61,6 +62,21 @@ class Kele
     }
 
     response = self.class.post('https://www.bloc.io/api/v1/messages', body: values, headers: headers)
+=======
+  def create_submission(branch, commit, checkpoint_id, comment)
+    values = {
+      assignment_branch: branch,
+      assignment_commit_link: commit,
+      checkpoint_id: checkpoint_id,
+      comment: comment,
+      enrollment_id: 20416
+    }
+
+    headers = {
+      "authorization" => @token
+    }
+    response = self.class.post('https://www.bloc.io/api/v1/checkpoint_submissions', body: values, headers: headers)
+>>>>>>> submits
     puts response
   end
 end

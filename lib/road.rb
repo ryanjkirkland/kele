@@ -9,8 +9,9 @@ module Road
     checkpoints = sections["sections"][0]["checkpoints"]
     checkpoints.each do |x|
       if x["id"] == checkpoint_id
-        return x["id"] && x["body"]
+        return x["id"]["id"]
       end
     end
+    puts "Checkpoint does not exist in this roadmap."
   end
 end
